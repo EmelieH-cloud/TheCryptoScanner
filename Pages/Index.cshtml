@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1>Coin Information</h1>
+
+
+<form method="post">
+    <input type="text" asp-for="SearchTerm" placeholder="Enter coin name" />
+    <button type="submit">Search</button>
+</form>
+
+@if (Model.coinViewModel != null)
+{
+    <h2>@Model.coinViewModel.Name</h2>
+    <div>
+        <label>Symbol:</label>
+        <span>@Model.coinViewModel.Symbol</span>
+    </div>
+    <div>
+        <label>Last Updated:</label>
+        <span>@Model.coinViewModel.LastUpdated</span>
+    </div>
+    <div>
+        <label>Market cap rank:</label>
+        <span>@Model.coinViewModel.MarketCapRank</span>
+    </div>
+    @if (Model.coinViewModel.Categories != null && Model.coinViewModel.Categories.Any())
+    {
+        <h3>Categories:</h3>
+        <ul>
+            @foreach (var category in Model.coinViewModel.Categories)
+            {
+                <li>@category</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No categories available.</p>
+    }
+}
+else
+{
+    <p>@Model.ErrorMessage</p>
+}
