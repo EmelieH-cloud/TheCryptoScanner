@@ -27,16 +27,10 @@ namespace MyCryptoScanner.Pages
         {
             try
             {
-                // Skapa ett objekt av CoinInfoRoot
-                CoinInfoRoot response = await new ApiCaller().MakeCall<CoinInfoRoot>(SearchTerm.ToLower());
-                coinViewModel = new ViewModel
-                {
-                    Symbol = response.Symbol,
-                    Name = response.Name,
-                };
-
                 // Skapa ett objekt av PriceRoot
-                PriceRoot secondResponse = await new ApiCaller().MakeCall<PriceRoot>(SearchTerm.ToLower());
+                PriceRoot secondResponse = await new ApiCaller().MakeCall<PriceRoot>($"simple/price?ids={SearchTerm}&vs_currencies=sek&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false&precision=18");
+
+
                 sekViewModel = new ViewModel();
 
                 foreach (var term in Strings)

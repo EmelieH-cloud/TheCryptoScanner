@@ -14,23 +14,14 @@
             }
         </select>
     </div>
-    <div class="form-group">
-        <label for="customString">Vald kryptovaluta:</label>
-        <!-- Här visas det valda värdet -->
-        <input type="text" class="form-control" asp-for="SearchTerm" id="customString" name="SearchTerm" />
-    </div>
     <button type="submit" class="btn btn-primary">Skicka</button>
 </form>
 
-@if (Model.coinViewModel != null)
-{
-    <h2>@Model.coinViewModel.Name (@Model.coinViewModel.Symbol)</h2>
-    
 
-    @if (Model.coinViewModelSek != null)
+
+    @if (Model.sekViewModel != null)
     {
         <h1>Sek</h1>
-        <h2>@Model.coinViewModelSek.Sek.ToString()</h2>
+        <h2>@Model.sekViewModel.Sek</h2>
     }
-}
 
