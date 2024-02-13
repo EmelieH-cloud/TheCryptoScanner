@@ -4,45 +4,26 @@
     ViewData["Title"] = "Home page";
 }
 
-<h1>Coin Information</h1>
-
-
 <form method="post">
-    <input type="text" asp-for="SearchTerm" placeholder="Enter coin name" />
-    <button type="submit">Search</button>
+    <div class="form-group">
+        <label for="selectedString">Välj en kryptovaluta:</label>
+        <select class="form-control" id="selectedString" name="SearchTerm" asp-for="SearchTerm">
+            @foreach (var str in Model.Strings)
+            {
+                <option value="@str">@str</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="customString">Vald kryptovaluta:</label>
+        <!-- Här visas det valda värdet -->
+        <input type="text" class="form-control" asp-for="SearchTerm" id="customString" name="SearchTerm" />
+    </div>
+    <button type="submit" class="btn btn-primary">Skicka</button>
 </form>
 
 @if (Model.coinViewModel != null)
 {
-    <h2>@Model.coinViewModel.Name</h2>
-    <div>
-        <label>Symbol:</label>
-        <span>@Model.coinViewModel.Symbol</span>
-    </div>
-    <div>
-        <label>Last Updated:</label>
-        <span>@Model.coinViewModel.LastUpdated</span>
-    </div>
-    <div>
-        <label>Market cap rank:</label>
-        <span>@Model.coinViewModel.MarketCapRank</span>
-    </div>
-    @if (Model.coinViewModel.Categories != null && Model.coinViewModel.Categories.Any())
-    {
-        <h3>Categories:</h3>
-        <ul>
-            @foreach (var category in Model.coinViewModel.Categories)
-            {
-                <li>@category</li>
-            }
-        </ul>
-    }
-    else
-    {
-        <p>No categories available.</p>
-    }
-}
-else
-{
-    <p>@Model.ErrorMessage</p>
+    <h2>@Model.coinViewModel.Name (@Model.coinViewModel.Symbol)</h2>
+    <!-- Visa andra egenskaper för coinViewModel här -->
 }
