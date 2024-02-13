@@ -25,5 +25,12 @@
 @if (Model.coinViewModel != null)
 {
     <h2>@Model.coinViewModel.Name (@Model.coinViewModel.Symbol)</h2>
-    <!-- Visa andra egenskaper för coinViewModel här -->
+    
+
+    @if (Model.coinViewModelSek != null)
+    {
+        <h1>Sek</h1>
+        <h2>@Model.coinViewModelSek.Sek.ToString()</h2>
+    }
 }
+
