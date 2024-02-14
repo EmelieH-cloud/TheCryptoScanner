@@ -19,9 +19,15 @@
 
 
 
-    @if (Model.sekViewModel != null)
-    {
-        <h1>Sek</h1>
-        <h2>@Model.sekViewModel.Sek</h2>
-    }
+   @if (Model.sekViewModel != null)
+ {
+   <h1>This cryptocurrency in SEK:</h1>
+   <h2>@Model.sekViewModel.Sek</h2>
+ }
 
+    @if (Model.coinViewModel!=null)
+{
+    <h1>Coin info</h1>
+    <h2>Name: @Model.coinViewModel.Name</h2>
+    <h2>Symbol: @Model.coinViewModel.Symbol</h2>
+}
